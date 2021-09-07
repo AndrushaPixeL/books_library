@@ -13,7 +13,6 @@
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.0",
     "enzyme": "3.11.0",
     "immer-reducer": "^0.7.13",
-    "prettier": "2.0.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -44,5 +43,7 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
   }
 }

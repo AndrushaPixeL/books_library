@@ -6,7 +6,6 @@ interface ICardProps {
 }
 
 const Card: React.FunctionComponent<ICardProps> = (props) => {
-  console.log(99999, props.title)
 
   return (
   <div className="card_container">

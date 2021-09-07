@@ -1,17 +1,20 @@
 import React, { Fragment } from 'react'
 import Card from '../components/Card/Card'
-import { useAppPresenter } from '../redux/presenters/AppPresenter'
 import './Home.css'
 
-export const Home: React.FC = () => {
-  const { values } = useAppPresenter()
+interface IHome {
+  data: any
+}
+
+const Home: React.FunctionComponent<IHome> = (props) => {
+  
   return (
     <Fragment>
       <div className="container">
-        {values.data.items.map((el: any) => {
+        {props.data.items.map((el: any) => {
           return (
-            <div>
-              <Card title={el.volumeInfo.title} />
+            <div key={el?.etag+el?.id} >
+              <Card title={el?.volumeInfo?.title} />
             </div>
           )
         })}
@@ -19,3 +22,4 @@ export const Home: React.FC = () => {
     </Fragment>
   )
 }
+export default Home

@@ -1,12 +1,15 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-export const Navbar: React.FC = () => (
+interface INavbar {
+  totalItems: Number
+}
+
+export const Navbar: React.FunctionComponent<INavbar> = (props) => (
   <nav>
     <div className="nav-wrapper cyan darken-1 px1">
-      <NavLink to="/" className="brand-logo">
-        Google Books
-      </NavLink>
+        Google Books    
+      
     </div>
   </nav>
 )
