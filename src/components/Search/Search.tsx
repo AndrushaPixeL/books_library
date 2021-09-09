@@ -10,7 +10,6 @@ interface ISearch {
 }
 
 const Search: React.FunctionComponent<ISearch> = (props) => {
-  const [category, setCategory] = useState<string>('')
   const [sort, setSort] = useState<string>('relevance')
 
   const executionSearch = () => {
@@ -36,7 +35,7 @@ const Search: React.FunctionComponent<ISearch> = (props) => {
             props.setSearchData(
               e.target.value,
               props.searchStateVal.category,
-              sort
+              props.searchStateVal.sort
             )
           }}
         />
@@ -56,7 +55,7 @@ const Search: React.FunctionComponent<ISearch> = (props) => {
             props.setSearchData(
               props.searchStateVal.searchValue,
               val.target.value,
-              sort
+              props.searchStateVal.sort
             )
           }
         >
