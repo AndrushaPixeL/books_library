@@ -1,0 +1,18 @@
+.navbar_container {
+    min-height: 300px;
+    background-color: rgb(0, 71, 60);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: url('https://i.artfile.ru/1920x1200_1523480_[www.ArtFile.ru].jpg');
+}
+.title{
+    text-align: center;
+    padding: 24px;
+    margin: 0 auto;
+    color: rgb(255, 253, 249);
+}
+.search_component {
+    margin: 0 auto;
+
+}

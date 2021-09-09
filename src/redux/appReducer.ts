@@ -1,26 +1,36 @@
 import { createActionCreators, ImmerReducer } from 'immer-reducer'
-import { IData } from '../types'
+import { IData, SearchData } from '../types'
 
 export interface MyImmerReducerInitialStateInt {
   data: IData,
   startIndex: number,
+  searchData: SearchData,
   isLoading: boolean
 }
 export const myImmerReducerInitialState: MyImmerReducerInitialStateInt = {
   data: { items: [], kind: '', totalItems: 0 },
-  startIndex: 120,
+  startIndex: 0,
+  searchData: {searchValue: '', category: '', sort: 'relevance'},
   isLoading: false
 }
 
 class MyImmerReducer extends ImmerReducer<MyImmerReducerInitialStateInt> {
+  setSearchData(searchValue: string, category: string, sort: string){
+    console.log(66666666666666)  
+    this.draftState.searchData = {searchValue, category, sort}
+  }
   setData(data: IData) {
     this.draftState.data = {items: Array.from(new Set(this.draftState.data.items.concat(data.items))), kind: data.kind, totalItems: data.totalItems}
-  }
+  }  
   setStartIndex(startIndex: number){
     this.draftState.startIndex = startIndex
   }
   setIsLoading(isLoading: boolean) {
     this.draftState.isLoading = isLoading
+  }
+  clearData() {
+    console.log(555555555555555)    
+    this.draftState.data = {items: [], kind: '', totalItems: 0}
   }
 }
 

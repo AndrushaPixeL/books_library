@@ -1,17 +1,18 @@
-import { number } from 'prop-types'
-import { useCallback, useEffect, useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 import { useDispatch } from 'react-redux'
 import { useMappedState } from 'redux-react-hook'
 import { GlobalState } from '../../store'
+import { SearchData } from '../../types'
 import { MyImmerActionCreater } from '../appReducer'
 import { fetchData } from '../thunk/loadData'
-
 
 function useState() {
   const mapState = useCallback(
     (state: GlobalState) => ({
       data: state.data,
-      startIndex: state.startIndex
+      startIndex: state.startIndex,
+      searchData: state.searchData,
+      isLoading: state.isLoading,
     }),
     []
   )
@@ -21,11 +22,20 @@ function useEventHandlers() {
   const dispatch = useDispatch()
   const eventHandlers = useMemo(
     () => ({
-      loadData: (startIndex: number) => {
-        dispatch(fetchData(startIndex))
+      setSearchData: (searchValue: string, category: string, sort: string) => {
+        dispatch(MyImmerActionCreater.setSearchData(searchValue, category, sort))
+      },
+      loadData: (
+        startIndex: number,
+        searchData: SearchData
+      ) => {
+        dispatch(fetchData(startIndex, searchData))
+      },
+      clearData: () => {
+        dispatch(MyImmerActionCreater.clearData())
       },
       setStartIndex: (count: number) => {
-        dispatch( MyImmerActionCreater.setStartIndex(count))
+        dispatch(MyImmerActionCreater.setStartIndex(count))
       }
     }),
     [dispatch]
@@ -35,12 +45,11 @@ function useEventHandlers() {
 }
 
 export function useAppPresenter() {
-  // useInitialization()
   const values = useState()
   const eventHandlers = useEventHandlers()
 
   return {
     values,
-    eventHandlers
+    eventHandlers,
   }
 }

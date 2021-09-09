@@ -1,6 +1,27 @@
-.container_app {
+.app_container {
+    display: flex;
+    flex-direction: column;
+    background-color: #2d1a00;
+    width: 100%;
+    min-height: 100vh;
+    padding-bottom: 50px;
+}
+.button_spinner_container {
     display: flex;
     justify-content: center;
-flex-direction: column;
 
+}
+.botton_loadMore {
+    margin: 24px;
+    padding: 16px;
+    width: 200px;
+    border-radius: 16px;
+    background-color: #e9ffc5;
+    border: 0px;
+    cursor: pointer;
+
+}
+.stage_spinner {
+    display: flex;
+    justify-content: center;
 }

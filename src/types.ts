@@ -1,60 +1,66 @@
 export type AccessInfo = {
-  accessViewStatus: String
-  country: String
-  embeddable: Boolean
+  accessViewStatus: string
+  country: string
+  embeddable: boolean
 }
 export type SaleInfo = {
-  buyLink: String
-  country: String
-  isEbook: Boolean
+  buyLink: string
+  country: string
+  isEbook: boolean
 }
 export type SearchInfo = {
-  textSnippet: String
+  textSnippet: string
 }
 export type ImageLinks = {
-  smallThumbnail: String
-  thumbnail: String
+  smallThumbnail: string
+  thumbnail: string
 }
 export type IndustryIdentifiers = {
-  type: String
-  identifier: String
+  type: string
+  identifier: string
 }
 export type PanelizationSummary = {
-  containsEpubBubbles: Boolean
-  containsImageBubbles: Boolean
+  containsEpubBubbles: boolean
+  containsImageBubbles: boolean
 }
 export type VolumeInfo = {
-  allowAnonLogging: Boolean
-  authors: Array<String>
-  cannonicalVolume: String
-  categories: Array<String>
-  contentVersion: String
-  description: String
+  allowAnonLogging: boolean
+  authors: Array<string>
+  cannonicalVolume: string
+  categories: Array<string>
+  contentVersion: string
+  description: string
   imageLinks: ImageLinks
   industryIdentifiers: Array<IndustryIdentifiers>
-  infoLink: String
-  language: String
-  maturityRating: String
-  pageCount: Number
+  infoLink: string
+  language: string
+  maturityRating: string
+  pageCount: number
   panelizationSummary: PanelizationSummary
-  previewLink: String
-  printType: String
-  publishedDate: String
-  publisher: String
+  previewLink: string
+  printType: string
+  publishedDate: string
+  publisher: string
 }
 export type Book = {
   accessInfo: AccessInfo
-  etag: String
-  id: String
-  kind: String
+  etag: string
+  id: string
+  kind: string
   saleInfo: SaleInfo
   searchInfo: SearchInfo
-  selfLink: String
+  selfLink: string
   volumeInfo: VolumeInfo
 }
-
 export interface IData {
   items: Array<Book>
-  kind: String
-  totalItems: Number
+  kind: string
+  totalItems: number
+}
+
+
+export type SearchData = {
+  searchValue: string
+  category: string
+  sort: string
 }
