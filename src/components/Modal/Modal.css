@@ -1,0 +1,9 @@
+.wrapper{
+    position: fixed;
+    background-color: aliceblue;
+    border-radius: 16px;
+    box-shadow: blanchedalmond;
+    padding: 120px;
+    width: 50%;
+    height: 60%;
+}

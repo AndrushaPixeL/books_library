@@ -5,10 +5,18 @@ export const fetchData = (
   startIndex: number,
   searchData: SearchData
 ) => {
+function getSearchValues(){
+if(
+  !!searchData.category
+){
+  return `${searchData.searchValue.split(' ').join('+')}+subject:${searchData.category}`
+}
+return `${searchData.searchValue.split(' ').join('+')}`
+}
   return (dispatch: (callback: any) => void) => {
     dispatch(MyImmerActionCreater.setIsLoading(true))
     fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=intitle:${searchData.searchValue.split(' ').join('+')}&subject:${searchData.category}&maxResults:30&startIndex:${startIndex}&orderBy:${searchData.sort}&key:AIzaSyD1sNdLC_UeZYexvNTQgjL-Gj1FkByF8XI`
+      `https://www.googleapis.com/books/v1/volumes?q=intitle:${getSearchValues()}&maxResults=30&startIndex=${startIndex}&orderBy=${searchData.sort}&key:AIzaSyD1sNdLC_UeZYexvNTQgjL-Gj1FkByF8XI`
     )
       .then((response): Promise<IData> => response.json())
       .then((data) => {
