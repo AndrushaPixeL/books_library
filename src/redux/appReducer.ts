@@ -16,7 +16,6 @@ export const myImmerReducerInitialState: MyImmerReducerInitialStateInt = {
 
 class MyImmerReducer extends ImmerReducer<MyImmerReducerInitialStateInt> {
   setSearchData(searchValue: string, category: string, sort: string){
-    console.log(66666666666666)  
     this.draftState.searchData = {searchValue, category, sort}
   }
   setData(data: IData) {
@@ -29,7 +28,6 @@ class MyImmerReducer extends ImmerReducer<MyImmerReducerInitialStateInt> {
     this.draftState.isLoading = isLoading
   }
   clearData() {
-    console.log(555555555555555)    
     this.draftState.data = {items: [], kind: '', totalItems: 0}
   }
 }

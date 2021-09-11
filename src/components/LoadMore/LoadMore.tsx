@@ -21,7 +21,6 @@ const LoadMore: React.FunctionComponent<ILoadMore> = (props) => {
           className="botton_loadMore"
           onClick={() => {
             props.setStartIndex(props.startIndex + 30),
-              console.log(props.startIndex),
               props.loadData(props.startIndex, props.searchStateVal)
           }}
         >

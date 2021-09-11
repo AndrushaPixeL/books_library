@@ -22,7 +22,7 @@ const App: React.FC = () => {
           clearData={eventHandlers.clearData}
         />
         <>
-          {values.data.items.length && <Home items={values.data.items} />}
+          {values.data.items[0] && <Home items={values.data.items}/>}
 
           <div className="stage_spinner">
             <StageSpinner

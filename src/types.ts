@@ -41,6 +41,8 @@ export type VolumeInfo = {
   printType: string
   publishedDate: string
   publisher: string
+  readingModes: Array<boolean>
+  title: string
 }
 export type Book = {
   accessInfo: AccessInfo

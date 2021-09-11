@@ -3,6 +3,12 @@
     height: 300px;
     margin: 16px;
     border-radius: 8px;
-    background-color: rgb(240, 255, 250);
+    background-color: rgb(230, 222, 214);
 
+}
+.image_card {
+    width: 128px;
+    height: 180px;
+    border-radius: 8px;
+    margin: 8px 36px 0 36px;
 }

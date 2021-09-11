@@ -59,7 +59,7 @@ const Search: React.FunctionComponent<ISearch> = (props) => {
             )
           }
         >
-          <option value="all">все</option>
+          <option value="">все</option>
           <option value="art">арт</option>
           <option value="biography">биография</option>
           <option value="computers">компьютеры</option>
