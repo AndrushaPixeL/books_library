@@ -1,43 +1,20 @@
-import React from 'react'
-import { VolumeInfo } from '../../types'
-import noImage from '../../images/noImage.png'
-import './Card.css'
+import React from "react";
+import { VolumeInfo } from "../../types";
+import "./Card.css";
+import getValues from "../Common/getInfoValues";
 
 type CardProps = {
-  volumeInfo: VolumeInfo
-}
+  volumeInfo?: VolumeInfo;
+};
 
-const Card: React.FunctionComponent<CardProps> = (props) => {
-  let title
-  let categories
-  let imgUrl
-  let authors
-  if (props.volumeInfo.categories) {
-    categories = props.volumeInfo.categories[0]
-  } else {
-    categories = ['']
-  }
-  if (props.volumeInfo.imageLinks) {
-    imgUrl = props.volumeInfo.imageLinks.thumbnail
-  } else {
-    imgUrl = noImage
-  }
-  if (props.volumeInfo.title) {
-    if (props.volumeInfo.title.length > 60)
-      title = props.volumeInfo.title.substr(0, 60) + '...'
-    else title = props.volumeInfo.title
-  } else {
-    title = 'Название отсутсвует'
-  }
-  if (props.volumeInfo.authors) {
-    authors = props.volumeInfo.authors
-  } else {
-    authors = ['']
-  }
+const Card: React.FunctionComponent<CardProps> = props => {
+  const { categories, imgUrl, title, authors } = React.useMemo(() => {
+    return getValues(props.volumeInfo);
+  }, [props.volumeInfo]);
 
   return (
     <>
-      {props.volumeInfo.title && (
+      {props.volumeInfo?.title && (
         <>
           <div className="card_container">
             <img
@@ -45,20 +22,20 @@ const Card: React.FunctionComponent<CardProps> = (props) => {
               src={imgUrl}
               alt="что-то пошло не так..."
             ></img>
-            <div className="card_category">{categories}</div>
+            <div className="card_category">{categories[0]}</div>
             <div className="card_title">{title}</div>
 
-            {authors.map((el: string, index: number) => {
+            {authors.map((el: string) => {
               return (
-                <div key={el + index} className="card_authors">
+                <div key={el} className="card_authors">
                   {el}
                 </div>
-              )
+              );
             })}
           </div>
         </>
       )}
     </>
-  )
-}
-export default Card
+  );
+};
+export default Card;

@@ -1,15 +1,14 @@
-import React from 'react'
-import { Navbar } from './components/Navbar/Navbar'
-import { useAppPresenter } from './redux/presenters/AppPresenter'
-import LoadMore from './components/LoadMore/LoadMore'
-import { StageSpinner } from 'react-spinners-kit'
-import Home from './components/Home/Home'
+import React from "react";
+import { Navbar } from "./components/Navbar/Navbar";
+import { useAppPresenter } from "./redux/presenters/AppPresenter";
+import LoadMore from "./components/LoadMore/LoadMore";
+import { StageSpinner } from "react-spinners-kit";
+import Home from "./components/Home/Home";
 
-import './App.css'
+import "./App.css";
 
 const App: React.FC = () => {
-  const { values, eventHandlers } = useAppPresenter()
-  console.log(values)
+  const { values, eventHandlers } = useAppPresenter();
 
   return (
     <>
@@ -22,7 +21,12 @@ const App: React.FC = () => {
           clearData={eventHandlers.clearData}
         />
         <>
-          {values.data.items[0] && <Home items={values.data.items} totalItems={values.data.totalItems}/>}
+          {values.data.items && (
+            <Home
+              items={values.data.items}
+              totalItems={values.data.totalItems}
+            />
+          )}
 
           <div className="stage_spinner">
             <StageSpinner
@@ -32,9 +36,7 @@ const App: React.FC = () => {
             />
           </div>
 
-          {values.data.items.length <= 1 || !values.data.items[0] ? (
-            <></>
-          ) : (
+          {!!values.data.items.length && (
             <LoadMore
               isLoading={values.isLoading}
               loadData={eventHandlers.loadData}
@@ -48,6 +50,6 @@ const App: React.FC = () => {
         </>
       </div>
     </>
-  )
-}
-export default App
+  );
+};
+export default App;

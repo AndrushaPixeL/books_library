@@ -1,27 +1,28 @@
-import React, { Fragment } from 'react'
-import ReactDOM from 'react-dom'
-import { Book } from '../../types'
-import Card from '../Card/Card'
-import Modal from '../Modal/Modal'
-import './Home.css'
+import React from "react";
+import ReactDOM from "react-dom";
+import { Book } from "../../types";
+import Card from "../Card/Card";
+import Modal from "../Modal/Modal";
+import "./Home.css";
 
 type HomeProps = {
-  items: Array<Book>,
-  totalItems: number
-}
+  items: Array<Book>;
+  totalItems: number;
+};
 interface DetailModal {
-  isOpen: boolean,
-  currentBook: Book
+  isOpen: boolean;
+  currentBook: Book;
 }
-const Home: React.FunctionComponent<HomeProps> = (props) => {
-  const [detailModal, setDetailModal] = React.useState<DetailModal | null>(null)
-  const refModal = React.useRef<HTMLDivElement>(null)
+const Home: React.FunctionComponent<HomeProps> = props => {
+  const [detailModal, setDetailModal] = React.useState<DetailModal | null>(
+    null
+  );
+  const refModal = React.useRef<HTMLDivElement>(null);
 
   return (
     <>
-    <h5 className="totalItems_text">Найдено {props.totalItems} книг</h5>
+      <h5 className="totalItems_text">Найдено {props.totalItems} книг</h5>
       <div className="container_home" ref={refModal}>
-        
         {props.items.map((el: Book) => {
           return (
             <div
@@ -29,13 +30,13 @@ const Home: React.FunctionComponent<HomeProps> = (props) => {
               onClick={() => {
                 setDetailModal({
                   isOpen: true,
-                  currentBook: el,
-                })
+                  currentBook: el
+                });
               }}
             >
               <Card volumeInfo={el?.volumeInfo} />
             </div>
-          )
+          );
         })}
       </div>
       {detailModal?.isOpen &&
@@ -43,14 +44,14 @@ const Home: React.FunctionComponent<HomeProps> = (props) => {
         refModal.current &&
         ReactDOM.createPortal(
           <Modal
-          volumeInfo={detailModal.currentBook.volumeInfo}
+            volumeInfo={detailModal.currentBook.volumeInfo}
             onClose={() => {
-              setDetailModal(null)
+              setDetailModal(null);
             }}
           />,
           refModal.current
         )}
     </>
-  )
-}
-export default Home
+  );
+};
+export default Home;

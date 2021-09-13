@@ -1,42 +1,31 @@
-import React from 'react'
-import { VolumeInfo } from '../../types'
-import noImage from '../../images/noImage.png'
-import './Modal.css'
+import React from "react";
+import { VolumeInfo } from "../../types";
+import "./Modal.css";
+import useOnClickOutside from "../Common/useOnclickOutside";
+import getValues from "../Common/getInfoValues";
 
 type ModalProps = {
-  volumeInfo: VolumeInfo,
-  onClose: () => void
-}
+  volumeInfo: VolumeInfo;
+  onClose: () => void;
+};
 
-const Modal: React.FunctionComponent<ModalProps> = (props) => {
-  console.log('render', props)
-  let categories
-  let imgUrl
-  let authors
-  let description
-  if (props.volumeInfo.description) {
-    description = props.volumeInfo.description
-  } else {
-    description = "Описание не найдено"
-  }
-  if (props.volumeInfo.categories) {
-    categories = props.volumeInfo.categories
-  } else {
-    categories = ['']
-  }
-  if (props.volumeInfo.imageLinks) {
-    imgUrl = props.volumeInfo.imageLinks.thumbnail
-  } else {
-    imgUrl = noImage
-  }
-  if (props.volumeInfo.authors) {
-    authors = props.volumeInfo.authors
-  } else {
-    authors = ['']
-  }
+const Modal: React.FunctionComponent<ModalProps> = props => {
+  const { categories, imgUrl, authors, description } = React.useMemo(() => {
+    return getValues(props.volumeInfo);
+  }, [props.volumeInfo]);
+
+  const wrapperRef = React.useRef<HTMLDivElement>(null);
+  useOnClickOutside(wrapperRef, () => {
+    props.onClose();
+  });
+
   return (
-    <div className="modal_container" onClick={props.onClose}>
-      <div className="modal_dialog" onClick={(e) => e.stopPropagation()}>
+    <div className="modal_container">
+      <div
+        className="modal_dialog"
+        onClick={e => e.stopPropagation()}
+        ref={wrapperRef}
+      >
         <div className="modal_header">
           <h3 className="modal_title">{props.volumeInfo.title}</h3>
           {props.volumeInfo.subtitle && (
@@ -50,13 +39,13 @@ const Modal: React.FunctionComponent<ModalProps> = (props) => {
 
             <div className="modal_info">
               <div>
-                {categories.map((el: string, index: number) => (
-                  <h6 key={el + index}>Категории: {el}</h6>
+                {categories.map((el: string) => (
+                  <h6 key={el}>Категории: {el}</h6>
                 ))}
               </div>
               <div>
-                {authors.map((el: string, index: number) => (
-                  <h5 key={el + index}>Авторы: {el}</h5>
+                {authors.map((el: string) => (
+                  <h5 key={el}>Авторы: {el}</h5>
                 ))}
               </div>
             </div>
@@ -65,7 +54,7 @@ const Modal: React.FunctionComponent<ModalProps> = (props) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Modal
+export default Modal;

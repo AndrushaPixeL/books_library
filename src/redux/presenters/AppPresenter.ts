@@ -1,10 +1,10 @@
-import { useCallback, useMemo } from 'react'
-import { useDispatch } from 'react-redux'
-import { useMappedState } from 'redux-react-hook'
-import { GlobalState } from '../../store'
-import { SearchData } from '../../types'
-import { MyImmerActionCreater } from '../appReducer'
-import { fetchData } from '../thunk/loadData'
+import { useCallback, useMemo } from "react";
+import { useDispatch } from "react-redux";
+import { useMappedState } from "redux-react-hook";
+import { GlobalState } from "../../store";
+import { SearchData } from "../../types";
+import { MyImmerActionCreator } from "../appReducer";
+import { fetchData } from "../thunk/loadData";
 
 function useState() {
   const mapState = useCallback(
@@ -12,44 +12,43 @@ function useState() {
       data: state.data,
       startIndex: state.startIndex,
       searchData: state.searchData,
-      isLoading: state.isLoading,
+      isLoading: state.isLoading
     }),
     []
-  )
-  return useMappedState(mapState)
+  );
+  return useMappedState(mapState);
 }
 function useEventHandlers() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const eventHandlers = useMemo(
     () => ({
       setSearchData: (searchValue: string, category: string, sort: string) => {
-        dispatch(MyImmerActionCreater.setSearchData(searchValue, category, sort))
+        dispatch(
+          MyImmerActionCreator.setSearchData(searchValue, category, sort)
+        );
       },
-      loadData: (
-        startIndex: number,
-        searchData: SearchData
-      ) => {
-        dispatch(fetchData(startIndex, searchData))
+      loadData: (startIndex: number, searchData: SearchData) => {
+        dispatch(fetchData(startIndex, searchData));
       },
       clearData: () => {
-        dispatch(MyImmerActionCreater.clearData())
+        dispatch(MyImmerActionCreator.clearData());
       },
       setStartIndex: (count: number) => {
-        dispatch(MyImmerActionCreater.setStartIndex(count))
+        dispatch(MyImmerActionCreator.setStartIndex(count));
       }
     }),
     [dispatch]
-  )
+  );
 
-  return eventHandlers
+  return eventHandlers;
 }
 
 export function useAppPresenter() {
-  const values = useState()
-  const eventHandlers = useEventHandlers()
+  const values = useState();
+  const eventHandlers = useEventHandlers();
 
   return {
     values,
-    eventHandlers,
-  }
+    eventHandlers
+  };
 }
