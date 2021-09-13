@@ -26,7 +26,6 @@ function useOnClickOutside(
       document.removeEventListener(`touchstart`, listener);
     };
 
-    // Reload only if ref or handler changes
   }, [ref, handler]);
 }
 

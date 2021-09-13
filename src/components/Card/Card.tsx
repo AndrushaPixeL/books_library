@@ -1,7 +1,7 @@
 import React from "react";
 import { VolumeInfo } from "../../types";
-import "./Card.css";
 import getValues from "../Common/getInfoValues";
+import "./Card.css";
 
 type CardProps = {
   volumeInfo?: VolumeInfo;

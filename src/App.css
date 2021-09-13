@@ -9,7 +9,6 @@
 .button_spinner_container {
     display: flex;
     justify-content: center;
-
 }
 .botton_loadMore {
     margin: 24px;
@@ -19,7 +18,6 @@
     background-color: #e9ffc5;
     border: 0px;
     cursor: pointer;
-
 }
 .stage_spinner {
     display: flex;

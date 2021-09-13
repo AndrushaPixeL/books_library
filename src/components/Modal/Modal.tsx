@@ -1,8 +1,8 @@
 import React from "react";
 import { VolumeInfo } from "../../types";
-import "./Modal.css";
 import useOnClickOutside from "../Common/useOnclickOutside";
 import getValues from "../Common/getInfoValues";
+import "./Modal.css";
 
 type ModalProps = {
   volumeInfo: VolumeInfo;

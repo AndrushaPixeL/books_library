@@ -13,11 +13,8 @@ type LoadMoreProps = {
 }
 
 const LoadMore: React.FunctionComponent<LoadMoreProps> = (props) => {
-  console.log(props);
-  
   return (
     <div className="button_spinner_container">
-
      {!props.isLoading && props.numberOfBooks<=props.totalItems &&
       <>
         <button
