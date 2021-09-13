@@ -2,20 +2,23 @@ import React from 'react'
 import { SearchData } from '../../types'
 import '../../App.css'
 
-interface ILoadMore {
+type LoadMoreProps = {
     isLoading: boolean,
     loadData: (startIndex: number, searchData: SearchData) => void,
     startIndex: number,
     searchStateVal: SearchData,
-    setStartIndex: (startIndex: number) => void
+    setStartIndex: (startIndex: number) => void,
+    numberOfBooks: number,
+    totalItems: number
 }
 
-const LoadMore: React.FunctionComponent<ILoadMore> = (props) => {
-
+const LoadMore: React.FunctionComponent<LoadMoreProps> = (props) => {
+  console.log(props);
+  
   return (
     <div className="button_spinner_container">
 
-     {!props.isLoading &&
+     {!props.isLoading && props.numberOfBooks<=props.totalItems &&
       <>
         <button
           className="botton_loadMore"

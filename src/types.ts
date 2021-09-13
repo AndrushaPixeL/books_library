@@ -43,6 +43,7 @@ export type VolumeInfo = {
   publisher: string
   readingModes: Array<boolean>
   title: string
+  subtitle: string
 }
 export type Book = {
   accessInfo: AccessInfo
@@ -59,7 +60,6 @@ export interface IData {
   kind: string
   totalItems: number
 }
-
 
 export type SearchData = {
   searchValue: string

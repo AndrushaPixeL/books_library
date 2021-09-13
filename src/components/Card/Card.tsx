@@ -3,43 +3,61 @@ import { VolumeInfo } from '../../types'
 import noImage from '../../images/noImage.png'
 import './Card.css'
 
-interface ICardProps {
+type CardProps = {
   volumeInfo: VolumeInfo
 }
 
-const Card: React.FunctionComponent<ICardProps> = (props) => {
+const Card: React.FunctionComponent<CardProps> = (props) => {
   let title
   let categories
   let imgUrl
+  let authors
   if (props.volumeInfo.categories) {
-    categories = props.volumeInfo.categories
+    categories = props.volumeInfo.categories[0]
   } else {
     categories = ['']
-  }  
+  }
   if (props.volumeInfo.imageLinks) {
     imgUrl = props.volumeInfo.imageLinks.thumbnail
   } else {
     imgUrl = noImage
   }
   if (props.volumeInfo.title) {
-    title = props.volumeInfo.title
+    if (props.volumeInfo.title.length > 60)
+      title = props.volumeInfo.title.substr(0, 60) + '...'
+    else title = props.volumeInfo.title
   } else {
-    title = "Название отсутсвует"
+    title = 'Название отсутсвует'
   }
+  if (props.volumeInfo.authors) {
+    authors = props.volumeInfo.authors
+  } else {
+    authors = ['']
+  }
+
   return (
     <>
       {props.volumeInfo.title && (
         <>
           <div className="card_container">
-            <img className="image_card" src={imgUrl} alt="что-то пошло не так..."></img>
-            {categories?.map((el, index) => (
-              <h6 key={el + index}>{el}</h6>
-            ))}
+            <img
+              className="card_image"
+              src={imgUrl}
+              alt="что-то пошло не так..."
+            ></img>
+            <div className="card_category">{categories}</div>
+            <div className="card_title">{title}</div>
 
-            <h6>{title}</h6>
+            {authors.map((el: string, index: number) => {
+              return (
+                <div key={el + index} className="card_authors">
+                  {el}
+                </div>
+              )
+            })}
           </div>
         </>
-      ) }
+      )}
     </>
   )
 }

@@ -2,22 +2,21 @@ import React, { useState } from 'react'
 import { SearchData } from '../../types'
 import './Search.css'
 
-interface ISearch {
+type SearchProps = {
   setSearchData: (searchValue: string, category: string, sort: string) => void,
   loadData: (startIndex: number, searchData: SearchData) => void,
   searchStateVal: SearchData,
   clearData: () => void
 }
 
-const Search: React.FunctionComponent<ISearch> = (props) => {
-  const [sort, setSort] = useState<string>('relevance')
+const Search: React.FunctionComponent<SearchProps> = (props) => {
 
   const executionSearch = () => {
     props.loadData(0, props.searchStateVal)
   }
 
-  const listener = (e: any) => {
-    if (e.charCode === 13) {
+  const listener = (charCode: number) => {    
+    if (charCode === 13) {
       props.clearData()
       executionSearch()
     }
@@ -29,7 +28,7 @@ const Search: React.FunctionComponent<ISearch> = (props) => {
           className="search_input"
           type="book search"
           placeholder="Введите название книги"
-          onKeyPress={(e) => listener(e)}
+          onKeyPress={(e) => listener(e.charCode)}
           value={props.searchStateVal.searchValue}
           onChange={(e) => {
             props.setSearchData(
@@ -48,13 +47,13 @@ const Search: React.FunctionComponent<ISearch> = (props) => {
           🔎
         </button>
       </div>
-      <div className="options_container">
+      <div className="search_options_container">
         <select
           className="search_sort"
-          onChange={(val) =>
+          onChange={(e) =>
             props.setSearchData(
               props.searchStateVal.searchValue,
-              val.target.value,
+              e.target.value,
               props.searchStateVal.sort
             )
           }
@@ -67,11 +66,11 @@ const Search: React.FunctionComponent<ISearch> = (props) => {
           <option value="medical">медицина</option>
           <option value="poetry">поэзия</option>
         </select>
-        <select className="search_sort" onChange={(val) =>
+        <select className="search_sort" onChange={(e) =>
             props.setSearchData(
               props.searchStateVal.searchValue,
               props.searchStateVal.category,
-              val.target.value
+              e.target.value
             )
           }>
           <option value="relevance">Сначала актуальные</option>

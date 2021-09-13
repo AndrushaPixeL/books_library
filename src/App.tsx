@@ -22,7 +22,7 @@ const App: React.FC = () => {
           clearData={eventHandlers.clearData}
         />
         <>
-          {values.data.items[0] && <Home items={values.data.items}/>}
+          {values.data.items[0] && <Home items={values.data.items} totalItems={values.data.totalItems}/>}
 
           <div className="stage_spinner">
             <StageSpinner
@@ -41,6 +41,8 @@ const App: React.FC = () => {
               startIndex={values.startIndex}
               setStartIndex={eventHandlers.setStartIndex}
               searchStateVal={values.searchData}
+              numberOfBooks={values.data.items.length}
+              totalItems={values.data.totalItems}
             />
           )}
         </>

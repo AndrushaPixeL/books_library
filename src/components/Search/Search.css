@@ -25,7 +25,7 @@
     justify-content: center;
     cursor: pointer;
 }
-.options_container {
+.search_options_container {
     margin: 24px 0 24px 0;
     padding-right: 10%;
     display: flex;

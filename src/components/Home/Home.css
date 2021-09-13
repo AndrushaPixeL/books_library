@@ -1,9 +1,12 @@
-.container {
+.container_home {
     display: flex;
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
     width: 90vw;
     padding-top: 50px;
-
+}
+.totalItems_text {
+    align-self: center;
+    color: aliceblue;
 }
